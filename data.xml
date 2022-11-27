@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database>
+
+<resource title = "Велика робота"    
+          year="2017"
+    annotation="Стаття про досягнення"
+    author="Гаврила Гавриленко"
+    faculty="Кубiк"    
+    email="gav@gmail.com"
+/>
+
+<resource
+    title="Маленька робота"
+    year="2019"
+    annotation="Стаття про невиконане"
+    author="Степан Степаненко"
+    faculty="ФIТ"
+    email="step@gmail.com" />
+
+<resource
+    title="Середня робота"
+    year="2022"
+    annotation="Стаття про написання програми з XML"
+    author="Антон Антоненко"
+    faculty="Рубiк"
+    email="anton@gmail.com" />
+
+</database>

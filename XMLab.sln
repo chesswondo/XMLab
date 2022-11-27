@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33027.164
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XMLab", "XMLab.csproj", "{0D745B6F-0FB8-4CD1-A01B-DCF7569257AD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D745B6F-0FB8-4CD1-A01B-DCF7569257AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D745B6F-0FB8-4CD1-A01B-DCF7569257AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D745B6F-0FB8-4CD1-A01B-DCF7569257AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D745B6F-0FB8-4CD1-A01B-DCF7569257AD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4630530B-F910-4FFB-9BCD-6A47297B9287}
+	EndGlobalSection
+EndGlobal
