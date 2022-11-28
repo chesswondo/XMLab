@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Xsl;
 
 namespace XMLab
 {
@@ -23,6 +25,8 @@ namespace XMLab
         public const string email       = "email";
 
         public const string xmlPath     = "./data.xml";
+        public const string xslPath     = "./transform.xsl";
+        public const string htmlPath    = "./data.html";
 
         public XMLab()
         {
@@ -138,6 +142,19 @@ namespace XMLab
                     resultCount++;
                 }
             }
+        }
+
+        private void htmlBtn_Click(object sender, EventArgs e)
+        {
+            ConvertToHtml();
+        }
+
+        private void ConvertToHtml()
+        {
+            XslCompiledTransform xct = new XslCompiledTransform();
+            xct.Load(xslPath);
+            xct.Transform(xmlPath, htmlPath);
+            System.Diagnostics.Process.Start(Path.GetFullPath(htmlPath));
         }
 
     }
