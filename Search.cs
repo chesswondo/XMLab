@@ -126,4 +126,92 @@ namespace XMLab
         }
     }
 
+    public class SaxSearch : ISearch
+    {
+        public List<Resource> Search(SearchCriteria criteria)
+        {
+            List<Resource> resources = new List<Resource>();
+            var xmlReader = new XmlTextReader(XMLab.xmlPath);
+            while (xmlReader.Read())
+            {
+                if (xmlReader.HasAttributes && xmlReader.NodeType == XmlNodeType.Element)
+                {
+                    Resource resource = new Resource();
+                    while (xmlReader.MoveToNextAttribute())
+                    {
+                        FillAttributes(resource, xmlReader, criteria);
+                    }
+                    resources.Add(resource.HasEmptyAttribute() ? null : resource);
+                }
+            }
+            return resources;
+        }
+
+        private void FillAttributes(Resource resource, XmlReader xmlReader, SearchCriteria criteria)
+        {
+            string attrName = xmlReader.Name;
+            string attrValue = xmlReader.Value;
+
+            if (attrName.Equals(XMLab.title))        resource.Title   = ResolveCriteria(criteria.Title, attrName, attrValue);
+            if (attrName.Equals(XMLab.author))       resource.Author  = ResolveCriteria(criteria.Author, attrName, attrValue);
+            if (attrName.Equals(XMLab.year))         resource.Year    = ResolveCriteria(criteria.Year, attrName, attrValue);
+            if (attrName.Equals(XMLab.faculty))      resource.Faculty = ResolveCriteria(criteria.Faculty, attrName, attrValue);
+
+            if (attrName.Equals(XMLab.annotation))   resource.Annotation = attrValue;
+            if (attrName.Equals(XMLab.email))        resource.Email      = attrValue;
+        }
+
+        private string ResolveCriteria(string criteria, string attrName, string attrValue)
+        {
+            if (criteria.Equals(""))  return attrValue;
+            return attrValue.Equals(criteria) ? attrValue : "";
+        }
+    }
+
+    public class LinqToXmlSearch : ISearch
+    {
+        public List<Resource> Search(SearchCriteria criteria)
+        {
+            List<Resource> resources = new List<Resource>();
+            var doc = XDocument.Load(XMLab.xmlPath);
+
+            var resourcesInList = from obj in doc.Descendants(XMLab.resourceTag)
+                                  select new
+                                  {
+                                      title = criteria.Title.Equals("") ? obj.Attribute(XMLab.title).Value :
+                                              criteria.Title.Equals(obj.Attribute(XMLab.title).Value) ?
+                                              obj.Attribute(XMLab.title).Value : "",
+                                      author= criteria.Author.Equals("") ? obj.Attribute(XMLab.author).Value :
+                                              criteria.Author.Equals(obj.Attribute(XMLab.author).Value) ?
+                                              obj.Attribute(XMLab.author).Value : "",
+                                      year  = criteria.Year.Equals("") ? obj.Attribute(XMLab.year).Value :
+                                              criteria.Year.Equals(obj.Attribute(XMLab.year).Value) ?
+                                              obj.Attribute(XMLab.year).Value : "",
+                                      faculty = criteria.Faculty.Equals("") ? obj.Attribute(XMLab.faculty).Value :
+                                              criteria.Faculty.Equals(obj.Attribute(XMLab.faculty).Value) ?
+                                              obj.Attribute(XMLab.faculty).Value : "",
+
+                                      annotation = obj.Attribute(XMLab.annotation).Value,
+                                      email      = obj.Attribute(XMLab.email).Value,
+                                 };
+
+            foreach (var resourceElem in resourcesInList)
+            {
+                Resource resource = new Resource();
+                resource.Title      = resourceElem.title;
+                resource.Author     = resourceElem.author;
+                resource.Year       = resourceElem.year;
+                resource.Faculty    = resourceElem.faculty;
+                resource.Annotation = resourceElem.annotation;
+                resource.Email      = resourceElem.email;
+
+                resources.Add(resource.HasEmptyAttribute() ? null : resource);
+            }
+
+            return resources;
+        }
+    }
+
+
+
 }

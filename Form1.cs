@@ -99,17 +99,11 @@ namespace XMLab
 
         private void Search()
         {
-            ISearch search = new DomSearch();
-            /*
-            if (saxBtn.Checked)
-            {
-                search = new SaxSearch();
-            }
-            if (linqToXmlBtn.Checked)
-            {
-                search = new LinqToXmlSearch();
-            }
-            */
+            ISearch search;
+            if (domBtn.Checked) search = new DomSearch();
+            else if (saxBtn.Checked) search = new SaxSearch();
+            else search = new LinqToXmlSearch();
+
             List<Resource> resources = search.Search(GetSearchCriteria());
             OutputSearchResults(resources);
         }
