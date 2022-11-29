@@ -16,10 +16,10 @@
 					</tr>
 					<xsl:for-each select="database/resource">
 						<tr>
-							<td><font color="red" weight="bold">
+							<td><font face="Arial" color="red" ><b>
 								<xsl:value-of select="@title">
 								</xsl:value-of>
-                                                            </font>
+                                                            </b></font>
 							</td>
 							<td><font color="navy">
 								<xsl:value-of select="@author">
@@ -31,10 +31,10 @@
 								</xsl:value-of>
                                                             </font>
 							</td>
-							<td><font color="oliva">
+							<td><font color="oliva"><i>
 								<xsl:value-of select="@faculty">
 								</xsl:value-of>
-                                                            </font>
+                                                            </i></font>
 							</td>
 							<td>
 								<xsl:value-of select="@annotation">

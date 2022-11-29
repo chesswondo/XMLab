@@ -169,6 +169,7 @@ namespace XMLab
         private void Form1_Shown(object sender, EventArgs e)
         {
             this.Activate();
+            this.BringToFront();
         }
     }
 }
