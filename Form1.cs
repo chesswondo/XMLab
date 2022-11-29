@@ -165,5 +165,10 @@ namespace XMLab
             xct.Transform(xmlPath, htmlPath);
             System.Diagnostics.Process.Start(Path.GetFullPath(htmlPath));
         }
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            this.Activate();
+        }
     }
 }
