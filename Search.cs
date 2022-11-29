@@ -82,48 +82,6 @@ namespace XMLab
             Resource.Email      = ResourceNode.Attributes[XMLab.email].Value;
         }
 
-        // Sets the speified Resource's attributes.
-        private void FillAttributes(Resource Resource, XmlAttribute attribute, SearchCriteria criteria)
-        {
-            string attrName = attribute.Name;
-            string attrValue = attribute.Value;
-
-            if (attrName.Equals(XMLab.title))
-            {
-                Resource.Author = ResolveCriteria(criteria.Title, attrName, attrValue);
-            }
-            if (attrName.Equals(XMLab.author))
-            {
-                Resource.Author = ResolveCriteria(criteria.Author, attrName, attrValue);
-            }
-            if (attrName.Equals(XMLab.year))
-            {
-                Resource.Year = ResolveCriteria(criteria.Year, attrName, attrValue);
-            }
-            if (attrName.Equals(XMLab.faculty))
-            {
-                Resource.Faculty = ResolveCriteria(criteria.Faculty, attrName, attrValue);
-            }
-            if (attrName.Equals(XMLab.annotation))
-            {
-                Resource.Annotation = attrValue;
-            }
-            if (attrName.Equals(XMLab.email))
-            {
-                Resource.Email = attrValue;
-            }
-        }
-
-        // Works on the search criteria constarints.
-        private string ResolveCriteria(string criteria, string attrName, string attrValue)
-        {
-            if (criteria.Equals(""))
-            {
-                return attrValue;
-            }
-
-            return attrValue.Equals(criteria) ? attrValue : "";
-        }
     }
 
     public class SaxSearch : ISearch

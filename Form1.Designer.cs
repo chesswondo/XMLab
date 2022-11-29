@@ -45,6 +45,8 @@ namespace XMLab
             this.SearchAuthor = new System.Windows.Forms.CheckBox();
             this.SearchTitle = new System.Windows.Forms.CheckBox();
             this.htmlBtn = new System.Windows.Forms.Button();
+            this.openFileDlg = new System.Windows.Forms.OpenFileDialog();
+            this.openFileDlgXsl = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -234,6 +236,14 @@ namespace XMLab
             this.htmlBtn.UseVisualStyleBackColor = true;
             this.htmlBtn.Click += new System.EventHandler(this.htmlBtn_Click);
             // 
+            // openFileDlg
+            // 
+            this.openFileDlg.Filter = "XML-файли|*.xml";
+            // 
+            // openFileDlgXsl
+            // 
+            this.openFileDlgXsl.Filter = "XSL файли|*.xsl";
+            // 
             // XMLab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -269,6 +279,8 @@ namespace XMLab
         private System.Windows.Forms.RadioButton domBtn;
         private System.Windows.Forms.Button searchBtn;
         private System.Windows.Forms.Button htmlBtn;
+        private System.Windows.Forms.OpenFileDialog openFileDlg;
+        private System.Windows.Forms.OpenFileDialog openFileDlgXsl;
     }
 }
 

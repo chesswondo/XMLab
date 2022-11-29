@@ -24,8 +24,8 @@ namespace XMLab
         public const string annotation  = "annotation";
         public const string email       = "email";
 
-        public const string xmlPath     = "./data.xml";
-        public const string xslPath     = "./transform.xsl";
+        static public       string xmlPath     = "./data.xml";
+        static public string xslPath     = "./transform.xsl";
         public const string htmlPath    = "./data.html";
 
         public XMLab()
@@ -41,6 +41,11 @@ namespace XMLab
         private void FillCriteriaLists()
         {
             XmlDocument doc = new XmlDocument();
+            if (openFileDlg.ShowDialog() == DialogResult.OK)
+            {
+                xmlPath = openFileDlg.FileName;
+            }
+
             doc.Load(xmlPath);
 
             XmlElement root = doc.DocumentElement;
@@ -152,10 +157,13 @@ namespace XMLab
         private void ConvertToHtml()
         {
             XslCompiledTransform xct = new XslCompiledTransform();
+            if (openFileDlgXsl.ShowDialog() == DialogResult.OK)
+            {
+                xslPath = openFileDlgXsl.FileName;
+            }
             xct.Load(xslPath);
             xct.Transform(xmlPath, htmlPath);
             System.Diagnostics.Process.Start(Path.GetFullPath(htmlPath));
         }
-
     }
 }
