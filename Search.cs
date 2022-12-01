@@ -99,7 +99,9 @@ namespace XMLab
                     {
                         FillAttributes(resource, xmlReader, criteria);
                     }
-                    resources.Add(resource.HasEmptyAttribute() ? null : resource);
+                    if (!resource.HasEmptyAttribute()) resources.Add(resource);
+
+                        //resources.Add(resource.HasEmptyAttribute() ? null : resource);
                 }
             }
             return resources;
@@ -163,7 +165,8 @@ namespace XMLab
                 resource.Annotation = resourceElem.annotation;
                 resource.Email      = resourceElem.email;
 
-                resources.Add(resource.HasEmptyAttribute() ? null : resource);
+                if (!resource.HasEmptyAttribute()) resources.Add(resource);
+                //resources.Add(resource.HasEmptyAttribute() ? null : resource);
             }
 
             return resources;
